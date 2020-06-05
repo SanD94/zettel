@@ -7,7 +7,6 @@ function! zettel#edit(...)
   endif
 
   let l:fname = expand('~/wiki/') . strftime("%F-%H%M") . l:sep . join(a:000, '-') . '.md'
-
   " edit the new file
   exec "edit " . l:fname
 
@@ -19,3 +18,5 @@ function! zettel#edit(...)
     exec "normal ggO\<c-r>=strftime('%Y-%m-%d %H:%M')\<cr>\<cr>\<esc>G"
   endif
 endfunc
+
+
