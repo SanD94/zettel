@@ -11,15 +11,15 @@ class Source(Base):
     def __init__(self, vim: Nvim) -> None:
         super().__init__(vim)
 
-        self.name = 'wiki_tag'
-        self.mark = '[WT]'
+        self.name = 'bib_tag'
+        self.mark = '[BT]'
         self.rank = 300
         # only activate for files in zettel
         self.filetypes = ['zettel']
 
     def get_complete_position(self, context: UserContext) -> int:
-      pos = context['input'].rfind('@')
-      return pos if pos < 0 else pos + 1
+      pos = context['input'].rfind('[#')
+      return pos if pos < 0 else pos + 2
 
     def gather_candidates(self, context):
         candidates = set()
@@ -60,7 +60,7 @@ class Source(Base):
 
     def _get_tagfiles(self, context):
         return [x for x in self.vim.call(
-                'map', ['tags'],
+                'map', ['bibtags'],
                 'fnamemodify(v:val, ":p")') if exists(x)]
 
 
@@ -149,3 +149,4 @@ def binary_search_lines_by_prefix(prefix, filename):
             else:
                 break
         return
+
