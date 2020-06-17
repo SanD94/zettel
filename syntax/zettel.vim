@@ -17,11 +17,14 @@ unlet! b:current_syntax
 
 
 syn match FileTagDelimiter /\(\[\[\|\]\]\)/
+syn match CitationTagDelimiter /\(\[#\|\]\)/
 syn match zettelTag /\v\@(\k|-)+/
 syn region zettelFileTag matchgroup=FileTagDelimiter start=/\[\[/  end=/\]\]/ concealends
+syn region zettelCitationTag matchgroup=CitationTagDelimiter start=/\[#/ end=/\]/ concealends
 
 
 hi def link zettelTag                   String
+hi def link zettelCitationTag           markdownFootnote
 hi def link zettelFileTag               markdownUrl
 
 let b:current_syntax = "zettel"
